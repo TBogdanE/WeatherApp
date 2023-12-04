@@ -1,0 +1,68 @@
+:root {
+  font-family: "Alata", sans-serif;
+  font-size: 16px;
+  --text1: #adb5bd;
+  --text2: #495057;
+  --body: #ced4da;
+  --body2: #212529;
+  --elements1: #adb5bd;
+  --elements2: #495057;
+  --btn: #6c757d;
+  --btn-active: #343a40;
+  --btn-hover: #343a40;
+}
+
+body {
+  display: grid;
+  grid-template-columns: repeat(20, 1fr);
+  grid-template-rows: repeat(20, 1fr);
+  background-color: var(--body);
+  height: 100vh;
+}
+
+#today-weather-box {
+  grid-area: 2 / 2 / 8 / 6;
+  background-color: var(--elements1);
+}
+
+#today-info-box {
+  grid-area: 3 / 7 / 7 / 13;
+  background-color: var(--elements1);
+}
+
+#search-location-box {
+  grid-area: 2 / 14 / 3 / 19;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#input-location {
+  width: 100%;
+  background-color: transparent;
+  color: var(--text2);
+  border: 0.15em solid var(--btn);
+  border-radius: 8px;
+  padding: 0.5em;
+  transition: 0.1s;
+}
+
+#input-location:hover {
+  background-color: var(--btn);
+  color: var(--text1);
+}
+
+#input-location:focus {
+    background-color: var(--btn);
+    color: var(--text1);
+  }
+
+#today-forecast-sct {
+  grid-area: 13 / 2 / 16 / 20;
+  background-color: var(--elements1);
+}
+
+#week-forecast-sct {
+  grid-area: 17 / 2 / 20 / 20;
+  background-color: var(--elements1);
+}
