@@ -121,15 +121,15 @@ body {
   padding: 0.5em;
 }
 
-#today-weather-sct-air-quality {
+#today-weather-sct-wind {
   grid-area: 7 / 1 / 11 / 4;
 }
 
-#today-weather-sct-humidity {
+#today-weather-sct-wind-dir {
   grid-area: 7 / 4 / 11 / 7;
 }
 
-#today-weather-sct-wind {
+#today-weather-sct-humidity {
   grid-area: 7 / 7 / 11 / 10;
 }
 
@@ -173,7 +173,6 @@ body {
 .forecast-sct {
   background-color: transparent;
   grid-area: 16 / 2 / 20 / 20;
-  background-color: var(--elements1);
   border: 0.2em solid var(--btn);
   border-radius: 10px;
 }
