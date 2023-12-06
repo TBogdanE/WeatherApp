@@ -11,13 +11,24 @@
     <title>TBE Weather</title>
   </head>
   <body>
+    <div id="menu-btn">
+        +
+    </div>
     <div id="search-location-box">
       <form>
         <input type="text" placeholder="city" id="input-location" />
       </form>
     </div>
-    <div id="today-weather-box"></div>
-    <div id="today-info-box"></div>
+
+    <div id="today-weather-box">
+        <div id="today-weather-icon-box">
+        <img src="../src/assets/images/testicon.jpeg" id="today-weather-icon"></img>
+        </div>
+        <div id="today-weather-temp"> 0 C</div>
+        <div id="today-weather-range">100 -200</div>
+    </div>
+
+
     <div id="today-forecast-sct"></div>
     <div id="week-forecast-sct"></div>
     <script src="project.js"></script>

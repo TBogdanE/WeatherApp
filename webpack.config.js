@@ -43,4 +43,9 @@ module.exports = {
       server: { baseDir: ["../dist/index.html"] },
     }),*/
   ],
+  resolve: {
+    fallback: {
+      path: require.resolve("path-browserify"),
+    },
+  },
 };

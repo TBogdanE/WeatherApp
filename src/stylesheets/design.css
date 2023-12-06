@@ -1,15 +1,16 @@
 :root {
   font-family: "Alata", sans-serif;
   font-size: 16px;
-  --text1: #adb5bd;
-  --text2: #495057;
-  --body: #ced4da;
-  --body2: #212529;
-  --elements1: #adb5bd;
-  --elements2: #495057;
-  --btn: #6c757d;
-  --btn-active: #343a40;
-  --btn-hover: #343a40;
+  --text1: rgb(173, 181, 189);
+  --text2: rgb(72, 79, 86);
+  --body: rgb(207, 212, 217);
+  --body2: rgb(33, 37, 41);
+  --elements1: rgb(173, 181, 189);
+  --elements1op: rgb(173, 181, 189, 0.5);
+  --elements2: rgb(72, 79, 86);
+  --btn: rgb(109, 118, 126);
+  --btn-active: rgb(54, 59, 64);
+  --btn-hover: rgb(53, 59, 65);
 }
 
 body {
@@ -19,17 +20,82 @@ body {
   background-color: var(--body);
   height: 100vh;
 }
+/*menu*******************************************************************/
+#menu-btn {
+  grid-area: 1 / 1 / 2 / 2;
+  border: 0.1em solid var(--btn);
+  width: 50%;
+  height: 50%;
+  color: var(--text2);
+  text-align: center;
+  border-radius: 5px;
+}
 
+#menu-box {
+  grid-area: 1 / 1 / 9 / 6;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  flex-direction: column;
+  background-color: var(--elements1);
+  border: 0.05em solid var(--elements2);
+  border-radius: 5px;
+}
+
+.menu-box-btns {
+    width: 80%;
+    background-color: transparent;
+    border: 0.1em solid var(--elements2);
+    border-radius: 5px;
+    color: var(--text2);
+    padding: 0.3em;
+    margin: 0.3em;
+    transition: 0.2s;
+}
+
+.menu-box-btns:hover {
+    background-color: var(--elements2);
+    color: var(--text1);
+}
+
+/*today principal box*******************************************************************/
 #today-weather-box {
-  grid-area: 2 / 2 / 8 / 6;
-  background-color: var(--elements1);
+  grid-area: 2 / 2 / 8 / 12;
+  display: grid;
+  grid-template-columns: repeat(15, 1fr);
+  grid-template-rows: repeat(10, 1fr);
+  flex-direction: column;
+  background-color: var(--elements1op);
+  border-radius: 10px;
 }
 
-#today-info-box {
-  grid-area: 3 / 7 / 7 / 13;
-  background-color: var(--elements1);
+#today-weather-icon-box {
+  grid-area: 1 / 2 / 5 / 5;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
+#today-weather-icon {
+  width: 90%;
+  margin: 0.3em;
+}
+
+#today-weather-temp {
+  grid-area: 2 / 5 / 3 / 9;
+  color: var(--text2);
+  padding: 0.7em;
+  text-align: left;
+}
+
+#today-weather-range {
+  grid-area: 3 / 5 / 4 / 9;
+  color: var(--text2);
+  padding: 0.7em;
+  text-align: left;
+}
+
+/*Input box*******************************************************************/
 #search-location-box {
   grid-area: 2 / 14 / 3 / 19;
   display: flex;
@@ -53,16 +119,18 @@ body {
 }
 
 #input-location:focus {
-    background-color: var(--btn);
-    color: var(--text1);
-  }
+  background-color: var(--btn);
+  color: var(--text1);
+}
 
+/*today forecast sct*******************************************************************/
 #today-forecast-sct {
-  grid-area: 13 / 2 / 16 / 20;
+  grid-area: 11 / 2 / 15 / 20;
   background-color: var(--elements1);
 }
 
+/*next week forecast sct*******************************************************************/
 #week-forecast-sct {
-  grid-area: 17 / 2 / 20 / 20;
+  grid-area: 16 / 2 / 20 / 20;
   background-color: var(--elements1);
 }
