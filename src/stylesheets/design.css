@@ -43,19 +43,19 @@ body {
 }
 
 .menu-box-btns {
-    width: 80%;
-    background-color: transparent;
-    border: 0.1em solid var(--elements2);
-    border-radius: 5px;
-    color: var(--text2);
-    padding: 0.3em;
-    margin: 0.3em;
-    transition: 0.2s;
+  width: 80%;
+  background-color: transparent;
+  border: 0.1em solid var(--elements2);
+  border-radius: 5px;
+  color: var(--text2);
+  padding: 0.3em;
+  margin: 0.3em;
+  transition: 0.2s;
 }
 
 .menu-box-btns:hover {
-    background-color: var(--elements2);
-    color: var(--text1);
+  background-color: var(--elements2);
+  color: var(--text1);
 }
 
 /*today principal box*******************************************************************/
@@ -82,17 +82,63 @@ body {
 }
 
 #today-weather-temp {
-  grid-area: 2 / 5 / 3 / 9;
+  font-size: 3em;
+  grid-area: 1 / 5 / 4 / 9;
+  color: var(--text2);
+  padding: 0.3em;
+  text-align: left;
+}
+
+#today-weather-feel {
+  font-size: 0.8em;
+  grid-area: 4 / 5 / 5 / 9;
   color: var(--text2);
   padding: 0.7em;
   text-align: left;
 }
 
-#today-weather-range {
-  grid-area: 3 / 5 / 4 / 9;
+.today-weather-sct {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  text-align: center;
+  width: 100%;
+}
+
+.today-weather-sct-title {
+  text-align: center;
+  font-weight: bold;
+  font-size: 0.7em;
   color: var(--text2);
-  padding: 0.7em;
-  text-align: left;
+  padding: 0.5em;
+}
+
+.today-weather-sct-txt {
+  text-align: center;
+  color: var(--text2);
+  font-size: 0.9em;
+  padding: 0.5em;
+}
+
+#today-weather-sct-air-quality {
+  grid-area: 7 / 1 / 11 / 4;
+}
+
+#today-weather-sct-humidity {
+  grid-area: 7 / 4 / 11 / 7;
+}
+
+#today-weather-sct-wind {
+  grid-area: 7 / 7 / 11 / 10;
+}
+
+#today-weather-sct-pressure {
+  grid-area: 7 / 10 / 11 / 13;
+}
+
+#today-weather-sct-uv {
+  grid-area: 7 / 13 / 11 / 16;
 }
 
 /*Input box*******************************************************************/
@@ -124,13 +170,18 @@ body {
 }
 
 /*today forecast sct*******************************************************************/
+.forecast-sct {
+  background-color: transparent;
+  grid-area: 16 / 2 / 20 / 20;
+  background-color: var(--elements1);
+  border: 0.2em solid var(--btn);
+  border-radius: 10px;
+}
 #today-forecast-sct {
   grid-area: 11 / 2 / 15 / 20;
-  background-color: var(--elements1);
 }
 
 /*next week forecast sct*******************************************************************/
 #week-forecast-sct {
   grid-area: 16 / 2 / 20 / 20;
-  background-color: var(--elements1);
 }
