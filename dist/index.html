@@ -11,9 +11,7 @@
     <title>TBE Weather</title>
   </head>
   <body>
-    <div id="menu-btn">
-        +
-    </div>
+    <div id="menu-btn">+</div>
     <div id="search-location-box">
       <form>
         <input type="text" placeholder="city" id="input-location" />
@@ -21,16 +19,107 @@
     </div>
 
     <div id="today-weather-box">
-        <div id="today-weather-icon-box">
-        <img src="../src/assets/images/testicon.jpeg" id="today-weather-icon"></img>
+      <div id="today-weather-icon-box">
+        <!--<img src="../src/assets/images/testicon.jpeg" id="today-weather-icon" />-->
+      </div>
+      <div id="today-weather-temp">--°C</div>
+      <div id="today-weather-feel">Feels like --°C</div>
+
+      <div id="today-weather-name">City</div>
+      <div id="today-weather-country">Country</div>
+
+      <div id="today-weather-sct-wind" class="today-weather-sct">
+        <div class="today-weather-sct-title">Wind</div>
+        <div id="today-weather-sct-wind-value" class="today-weather-sct-txt">
+          0
         </div>
-        <div id="today-weather-temp"> 0 C</div>
-        <div id="today-weather-range">100 -200</div>
+      </div>
+
+      <div id="today-weather-sct-wind-dir" class="today-weather-sct">
+        <div class="today-weather-sct-title">Wind direction</div>
+        <div
+          id="today-weather-sct-wind-dir-value"
+          class="today-weather-sct-txt"
+        >
+          0
+        </div>
+      </div>
+
+      <div id="today-weather-sct-humidity" class="today-weather-sct">
+        <div class="today-weather-sct-title">Humidity</div>
+        <div
+          id="today-weather-sct-humidity-value"
+          class="today-weather-sct-txt"
+        >
+          0
+        </div>
+      </div>
+
+      <div id="today-weather-sct-pressure" class="today-weather-sct">
+        <div class="today-weather-sct-title">Pressure</div>
+        <div
+          id="today-weather-sct-pressure-value"
+          class="today-weather-sct-txt"
+        >
+          0
+        </div>
+      </div>
+
+      <div id="today-weather-sct-uv" class="today-weather-sct">
+        <div class="today-weather-sct-title">UV</div>
+        <div id="today-weather-sct-uv-value" class="today-weather-sct-txt">
+          0
+        </div>
+      </div>
     </div>
 
-
-    <div id="today-forecast-sct"></div>
-    <div id="week-forecast-sct"></div>
+    <div id="today-forecast-sct" class="forecast-sct">
+      <div class="slider"></div>
+    </div>
+    <div id="week-forecast-sct" class="forecast-sct">
+      <!--<div class="week-forecast-sct-box">
+        <img src="../src/assets/images/testicon.jpeg" id="day1-icon" class="week-forecast-sct-icon" />
+        <div id="day1-temp" class="week-forecast-sct-temp">1°</div>
+        <div id="day1-range" class="week-forecast-sct-range">1° - 100°</div>
+        <div id="day1-rain" class="week-forecast-sct-chances-rain">90%</div>
+      </div>
+      <div class="week-forecast-sct-box">
+        <img id="day2-icon" class="week-forecast-sct-icon" />
+        <div id="day2-temp" class="week-forecast-sct-temp"></div>
+        <div id="day2-range" class="week-forecast-sct-range"></div>
+        <div id="day2-rain" class="week-forecast-sct-chances-rain"></div>
+      </div>
+      <div class="week-forecast-sct-box">
+        <img id="day3-icon" class="week-forecast-sct-icon" />
+        <div id="day3-temp" class="week-forecast-sct-temp"></div>
+        <div id="day3-range" class="week-forecast-sct-range"></div>
+        <div id="day3-rain" class="week-forecast-sct-chances-rain"></div>
+      </div>
+      <div class="week-forecast-sct-box">
+        <img id="day4-icon" class="week-forecast-sct-icon" />
+        <div id="day4-temp" class="week-forecast-sct-temp"></div>
+        <div id="day4-range" class="week-forecast-sct-range"></div>
+        <div id="day4-rain" class="week-forecast-sct-chances-rain"></div>
+      </div>
+      <div class="week-forecast-sct-box">
+        <img id="day5-icon" class="week-forecast-sct-icon" />
+        <div id="day5-temp" class="week-forecast-sct-temp"></div>
+        <div id="day5-range" class="week-forecast-sct-range"></div>
+        <div id="day5-rain" class="week-forecast-sct-chances-rain"></div>
+      </div>
+      <div class="week-forecast-sct-box">
+        <img id="day6-icon" class="week-forecast-sct-icon" />
+        <div id="day6-temp" class="week-forecast-sct-temp"></div>
+        <div id="day6-range" class="week-forecast-sct-range"></div>
+        <div id="day6-rain" class="week-forecast-sct-chances-rain"></div>
+      </div>
+      <div class="week-forecast-sct-box">
+        <img id="day7-icon" class="week-forecast-sct-icon" />
+        <div id="day7-temp" class="week-forecast-sct-temp"></div>
+        <div id="day7-range" class="week-forecast-sct-range"></div>
+        <div id="day7-rain" class="week-forecast-sct-chances-rain"></div>
+      </div>
+    </div>-->
     <script src="project.js"></script>
   </body>
 </html>

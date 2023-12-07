@@ -1,22 +1,45 @@
 import { temperatureUnits } from "./webpage";
-import { updateTodayCard } from "./handleUi";
-import { weatherData } from "./weatherApi";
+import { updateTodayCard, updateWeekSct } from "./handleUi";
 
 class WeatherDataHandler {
   constructor(weatherData) {
     this.todayWeather = new WeatherDay(weatherData);
-    console.log(weatherData.forecast.forecastday);
-    /*this.forecastWeather = weatherData.forecast.forecastday.map(
-      (day) => new WeatherDay(day)
-    );*/
+    //console.log("class", weatherData.forecast.forecastday);
+    this.forecastWeather = weatherData.forecast.forecastday.map(
+      (day) => new WeatherWeek(day)
+    );
   }
 
   getDay0() {
     return this.todayWeather;
   }
 
-  getDay1() {
+  getWeekDay0() {
     return this.forecastWeather[0];
+  }
+  
+  getWeekDay1() {
+    return this.forecastWeather[1];
+  }
+
+  getWeekDay2() {
+    return this.forecastWeather[2];
+  }
+
+  getWeekDay3() {
+    return this.forecastWeather[3];
+  }
+
+  getWeekDay4() {
+    return this.forecastWeather[4];
+  }
+
+  getWeekDay5() {
+    return this.forecastWeather[5];
+  }
+
+  getWeekDay6() {
+    return this.forecastWeather[6];
   }
 }
 
@@ -39,17 +62,38 @@ class WeatherDay {
     if (temperatureUnits === "Celsius") {
       this.todayTemp = data.current.temp_c;
       this.feelsLike = data.current.feelslike_c;
-      console.log("c to f");
     } else {
       this.todayTemp = data.current.temp_f;
       this.feelsLike = data.current.feelslike_f;
-      console.log("f to c");
+    }
+  }
+}
+
+class WeatherWeek {
+  constructor(data) {
+    this.temp = null;
+    this.minTemp = null;
+    this.maxTemp = null;
+    this.rain = data.day.daily_chance_of_rain;
+    this.weatherUnits(data);
+  }
+
+  weatherUnits(data) {
+    if (temperatureUnits === "Celsius") {
+      this.temp = data.day.avgtemp_c;
+      this.minTemp = data.day.mintemp_c;
+      this.maxTemp = data.day.maxtemp_c;
+    } else {
+      this.temp = data.day.avgtemp_f;
+      this.minTemp = data.day.mintemp_f;
+      this.maxTemp = data.day.maxtemp_f;
     }
   }
 }
 
 const updateData = (weatherData) => {
   updateTodayCard(weatherData);
+  updateWeekSct(weatherData);
 };
 
 export { WeatherDataHandler, WeatherDay, updateData };

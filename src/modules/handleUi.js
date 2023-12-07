@@ -35,4 +35,37 @@ const updateTodayCard = (weatherData) => {
   uvLevel.textContent = weather.uvLevele;
 };
 
-export { updateTodayCard };
+const updateWeekSct = (weatherData) => {
+  weekDay(weatherData.getWeekDay0());
+  weekDay(weatherData.getWeekDay1());
+  weekDay(weatherData.getWeekDay2());
+  weekDay(weatherData.getWeekDay3());
+  weekDay(weatherData.getWeekDay4());
+  weekDay(weatherData.getWeekDay5());
+  weekDay(weatherData.getWeekDay6());
+};
+
+const weekDay = (weatherData) => {
+  const data = weatherData;
+
+  console.log(data);
+
+  const box = document.getElementById("week-forecast-sct");
+
+  const card = document.createElement("div");
+  card.classList.add("week-forecast-sct-box");
+
+  const icon = document.createElement("img");
+  icon.classList.add("week-forecast-sct-icon");
+  icon.src = "../src/assets/images/testicon.jpeg";
+
+  const temperature = document.createElement("div");
+  temperature.classList.add("week-forecast-sct-temp");
+  temperature.textContent = data.temp;
+
+  box.appendChild(card);
+  card.appendChild(icon);
+  card.appendChild(temperature);
+};
+
+export { updateTodayCard, updateWeekSct };
