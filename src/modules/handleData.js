@@ -21,8 +21,8 @@ class WeatherDataHandler {
 class WeatherDay {
   constructor(data) {
     this.units = temperatureUnits;
-    this.todayTemp = data.temp_c;
-    this.feelsLike = data.feelslike_c;
+    this.todayTemp = null;
+    this.feelsLike = null;
     this.wind = data.wind_kph;
     this.windDir = data.wind_dir;
     this.humidity = data.humidity;
@@ -34,11 +34,11 @@ class WeatherDay {
   weatherUnits(data) {
     if (temperatureUnits === "Celsius") {
       this.todayTemp = data.temp_c;
-      this.feelsLike = data.feelsLike_c;
+      this.feelsLike = data.feelslike_c;
       console.log("c to f");
     } else {
       this.todayTemp = data.temp_f;
-      this.feelsLike = data.feelsLike_f;
+      this.feelsLike = data.feelslike_f;
       console.log("f to c");
     }
   }
