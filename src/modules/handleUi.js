@@ -36,6 +36,7 @@ const updateTodayCard = (weatherData) => {
 };
 
 const updateWeekSct = (weatherData) => {
+  clearDisplay("week-forecast-sct");
   weekDay(weatherData.getWeekDay0());
   weekDay(weatherData.getWeekDay1());
   weekDay(weatherData.getWeekDay2());
@@ -61,11 +62,28 @@ const weekDay = (weatherData) => {
 
   const temperature = document.createElement("div");
   temperature.classList.add("week-forecast-sct-temp");
-  temperature.textContent = data.temp;
+  temperature.textContent = `${data.temp}°`;
+
+  const range = document.createElement("div");
+  range.classList.add("week-forecast-sct-range");
+  range.textContent = `${data.minTemp}° - ${data.maxTemp}°`;
+
+  const rain = document.createElement("div");
+  rain.classList.add("week-forecast-sct-chances-rain");
+  rain.textContent = `${data.rain}%`;
 
   box.appendChild(card);
   card.appendChild(icon);
   card.appendChild(temperature);
+  card.appendChild(range);
+  card.appendChild(rain);
 };
 
 export { updateTodayCard, updateWeekSct };
+
+const clearDisplay = (id) => {
+  const box = document.getElementById(id);
+  while (box.firstChild) {
+    box.removeChild(box.firstChild);
+  }
+};
