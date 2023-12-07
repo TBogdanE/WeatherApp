@@ -1,10 +1,22 @@
-import { getWeatherData } from "./weatherApi";
+import { weatherData, getWeatherData } from "./weatherApi";
+import { updateData } from "./handleData";
 
 let temperatureUnits = "Celsius";
 
 const startApp = () => {
   getWeatherData("iasi");
   leftMenu();
+  inputLocation();
+};
+
+const inputLocation = () => {
+  const location = document.getElementById("input-location");
+  location.addEventListener("keydown", (event) => {
+    if (event.key == "Enter") {
+      event.preventDefault();
+      getWeatherData(location.value);
+    }
+  });
 };
 
 const leftMenu = () => {
@@ -43,15 +55,22 @@ const leftMenu = () => {
     deleteLocalStorageBtn.addEventListener("click", hideLeftMenu);
     //toggleUnitsBtn.addEventListener("click", deleteLocalStorageBtn);
 
+    const closeBtn = document.createElement("button");
+    closeBtn.textContent = "Close";
+    closeBtn.classList.add("menu-box-btns");
+    closeBtn.addEventListener("click", hideLeftMenu);
+
     body.addEventListener("keydown", handleEscapeKey);
     menu.appendChild(toggleUnitsBtn);
     menu.appendChild(deleteLocalStorageBtn);
+    menu.appendChild(closeBtn);
     body.appendChild(menu);
   });
 };
 
 const handleUnitsChange = () => {
   temperatureUnits = temperatureUnits === "Celsius" ? "Fahrenheit" : "Celsius";
+  updateData(weatherData);
   return temperatureUnits;
 };
 
