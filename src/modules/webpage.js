@@ -16,6 +16,7 @@ const inputLocation = () => {
       locationSearch = location.value;
       event.preventDefault();
       getWeatherData(locationSearch);
+      location.value = "";
     }
   });
 };
