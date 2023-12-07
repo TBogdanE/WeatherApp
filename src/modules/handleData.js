@@ -1,3 +1,4 @@
+import { getIcons } from "./weatherApi";
 import { temperatureUnits } from "./webpage";
 
 class WeatherDataHandler {
@@ -27,18 +28,17 @@ class WeatherDay {
     this.humidity = data.humidity;
     this.pressure = data.pressure_mb;
     this.uvLevele = data.uv;
+    this.weatherUnits(data);
   }
 
-  changeUnits(data) {
-    if (this.units === "Celsius") {
-      this.units = "Fahrenheit";
-      this.todayTemp = data.temp_f;
-      this.feelsLike = data.feelsLike_f;
-      console.log("c to f");
-    } else {
-      this.units = "Celsius";
+  weatherUnits(data) {
+    if (temperatureUnits === "Celsius") {
       this.todayTemp = data.temp_c;
       this.feelsLike = data.feelsLike_c;
+      console.log("c to f");
+    } else {
+      this.todayTemp = data.temp_f;
+      this.feelsLike = data.feelsLike_f;
       console.log("f to c");
     }
   }
@@ -51,11 +51,17 @@ const updateData = (weatherData) => {
 const updateTodayCard = (weatherData) => {
   const weather = weatherData.getDay0();
 
+  const iconBox = document.getElementById("today-weather-icon-box");
+  const icon = document.createElement("img");
+  icon.id = "today-weather-icon";
+  //icon.src = getIcons();
+  iconBox.appendChild(icon);
+
   const todayTemp = document.getElementById("today-weather-temp");
-  todayTemp.textContent = `${weather.todayTemp} C`;
+  todayTemp.textContent = `${weather.todayTemp}°C`;
 
   const tempFeel = document.getElementById("today-weather-feel");
-  tempFeel.textContent = `Feels like ${weather.feelsLike} C`;
+  tempFeel.textContent = `Feels like ${weather.feelsLike}°C`;
 
   const windSpeed = document.getElementById("today-weather-sct-wind-value");
   windSpeed.textContent = weather.wind;

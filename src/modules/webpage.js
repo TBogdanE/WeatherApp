@@ -2,9 +2,9 @@ import { weatherData, getWeatherData } from "./weatherApi";
 import { updateData } from "./handleData";
 
 let temperatureUnits = "Celsius";
+let locationSearch = "";
 
 const startApp = () => {
-  getWeatherData("iasi");
   leftMenu();
   inputLocation();
 };
@@ -13,8 +13,9 @@ const inputLocation = () => {
   const location = document.getElementById("input-location");
   location.addEventListener("keydown", (event) => {
     if (event.key == "Enter") {
+      locationSearch = location.value;
       event.preventDefault();
-      getWeatherData(location.value);
+      getWeatherData(locationSearch);
     }
   });
 };
@@ -46,6 +47,7 @@ const leftMenu = () => {
     toggleUnitsBtn.classList.add("menu-box-btns");
     toggleUnitsBtn.addEventListener("click", () => {
       toggleUnitsBtn.textContent = handleUnitsChange();
+      hideLeftMenu();
     });
 
     const deleteLocalStorageBtn = document.createElement("button");
@@ -70,7 +72,8 @@ const leftMenu = () => {
 
 const handleUnitsChange = () => {
   temperatureUnits = temperatureUnits === "Celsius" ? "Fahrenheit" : "Celsius";
-  updateData(weatherData);
+  getWeatherData(locationSearch);
+
   return temperatureUnits;
 };
 
