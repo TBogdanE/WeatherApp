@@ -1,5 +1,5 @@
 import { temperatureUnits } from "./webpage";
-import { updateTodayCard, updateWeekSct } from "./handleUi";
+import { updateHourlySct, updateTodayCard, updateWeekSct } from "./handleUi";
 
 class WeatherDataHandler {
   constructor(weatherData) {
@@ -10,36 +10,16 @@ class WeatherDataHandler {
     );
   }
 
+  getHourly() {
+    return this.forecastWeather[0];
+  }
+
   getDay0() {
     return this.todayWeather;
   }
 
-  getWeekDay0() {
-    return this.forecastWeather[0];
-  }
-  
-  getWeekDay1() {
-    return this.forecastWeather[1];
-  }
-
-  getWeekDay2() {
-    return this.forecastWeather[2];
-  }
-
-  getWeekDay3() {
-    return this.forecastWeather[3];
-  }
-
-  getWeekDay4() {
-    return this.forecastWeather[4];
-  }
-
-  getWeekDay5() {
-    return this.forecastWeather[5];
-  }
-
-  getWeekDay6() {
-    return this.forecastWeather[6];
+  getWeekDay(day) {
+    return this.forecastWeather[day];
   }
 }
 
@@ -75,6 +55,7 @@ class WeatherWeek {
     this.minTemp = null;
     this.maxTemp = null;
     this.rain = data.day.daily_chance_of_rain;
+    this.hourly = null;
     this.weatherUnits(data);
   }
 
@@ -93,6 +74,7 @@ class WeatherWeek {
 
 const updateData = (weatherData) => {
   updateTodayCard(weatherData);
+  updateHourlySct(weatherData);
   updateWeekSct(weatherData);
 };
 

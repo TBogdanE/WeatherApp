@@ -35,17 +35,6 @@ const updateTodayCard = (weatherData) => {
   uvLevel.textContent = weather.uvLevele;
 };
 
-const updateWeekSct = (weatherData) => {
-  clearDisplay("week-forecast-sct");
-  weekDay(weatherData.getWeekDay0());
-  weekDay(weatherData.getWeekDay1());
-  weekDay(weatherData.getWeekDay2());
-  weekDay(weatherData.getWeekDay3());
-  weekDay(weatherData.getWeekDay4());
-  weekDay(weatherData.getWeekDay5());
-  weekDay(weatherData.getWeekDay6());
-};
-
 const weekDay = (weatherData) => {
   const data = weatherData;
 
@@ -66,7 +55,7 @@ const weekDay = (weatherData) => {
 
   const range = document.createElement("div");
   range.classList.add("week-forecast-sct-range");
-  range.textContent = `${data.minTemp}° - ${data.maxTemp}°`;
+  range.textContent = `${data.minTemp}° / ${data.maxTemp}°`;
 
   const rain = document.createElement("div");
   rain.classList.add("week-forecast-sct-chances-rain");
@@ -79,7 +68,51 @@ const weekDay = (weatherData) => {
   card.appendChild(rain);
 };
 
-export { updateTodayCard, updateWeekSct };
+const updateWeekSct = (weatherData) => {
+  clearDisplay("week-forecast-sct");
+  weekDay(weatherData.getWeekDay(0));
+  weekDay(weatherData.getWeekDay(1));
+  weekDay(weatherData.getWeekDay(2));
+  weekDay(weatherData.getWeekDay(3));
+  weekDay(weatherData.getWeekDay(4));
+  weekDay(weatherData.getWeekDay(5));
+  weekDay(weatherData.getWeekDay(6));
+};
+
+const hourlyForecast = (weatherData) => {
+  const data = weatherData;
+
+  const box = document.getElementById("week-forecast-sct");
+
+  const card = document.createElement("div");
+  card.classList.add("week-forecast-sct-box");
+
+  const icon = document.createElement("img");
+  icon.classList.add("week-forecast-sct-icon");
+  icon.src = "../src/assets/images/testicon.jpeg";
+
+  const temperature = document.createElement("div");
+  temperature.classList.add("week-forecast-sct-temp");
+  temperature.textContent = `${data.temp}°`;
+
+  const rain = document.createElement("div");
+  rain.classList.add("week-forecast-sct-chances-rain");
+  rain.textContent = `${data.rain}%`;
+
+  const uv = document.createElement("div");
+  uv.classList.add("week-forecast-sct-uv");
+  uv.textContent = `UV ${data.uv}`;
+
+  box.appendChild(card);
+  card.appendChild(icon);
+  card.appendChild(temperature);
+  card.appendChild(rain);
+  card.appendChild(uv);
+};
+
+const updateHourlySct = (weatherData) => {
+  console.log("hourly", weatherData.getHourly());
+};
 
 const clearDisplay = (id) => {
   const box = document.getElementById(id);
@@ -87,3 +120,5 @@ const clearDisplay = (id) => {
     box.removeChild(box.firstChild);
   }
 };
+
+export { updateHourlySct, updateTodayCard, updateWeekSct };
