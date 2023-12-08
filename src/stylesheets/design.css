@@ -213,7 +213,35 @@ body {
   background-color: red;
 }
 
+#previous-btn-box {
+  grid-area: 12 / 1 / 14 / 3;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 
+#next-btn-box {
+  grid-area: 12 / 19 / 14 / 21;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.next-previous-btn {
+  color: var(--text2);
+  background-color: var(--body);
+  padding: 0.5em;
+  width: 1.1em;
+  border: 0.1em solid var(--btn);
+  border-radius: 45%;
+  text-align: center;
+  transition: 0.2s ease-in-out;
+}
+
+.next-previous-btn:hover {
+  background-color: var(--btn-hover);
+  color: var(--text1);
+}
 
 /*next week forecast sct*******************************************************************/
 #week-forecast-sct {
@@ -224,9 +252,40 @@ body {
 }
 
 .week-forecast-sct-box {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  flex-direction: column;
   margin: 0.5em;
   height: 8em;
   width: 7em;
   border-radius: 8px;
-  background-color: red;
+  transition: 0.15s ease-in-out;
+}
+
+.week-forecast-sct-box:hover {
+  background-color: var(--body);
+  filter: brightness(90%);
+}
+
+.week-forecast-sct-icon {
+  width: 35%;
+  padding: 0.5em;
+}
+
+.week-forecast-sct-temp {
+  font-size: 1.8em;
+  padding: 0.1em;
+}
+
+.week-forecast-sct-range {
+  font-size: 1em;
+}
+
+.week-forecast-sct-chances-rain {
+  font-size: 0.8em;
+}
+
+.forecast-sct-time {
+  font-size: 1em;
 }
