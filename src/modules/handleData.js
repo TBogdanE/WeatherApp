@@ -10,8 +10,8 @@ class WeatherDataHandler {
     );
   }
 
-  getHourly() {
-    return this.forecastWeather[0];
+  getHourly(day) {
+    return this.todayWeather.hourly[day].hour;
   }
 
   getDay0() {
@@ -35,6 +35,7 @@ class WeatherDay {
     this.humidity = data.current.humidity;
     this.pressure = data.current.pressure_mb;
     this.uvLevele = data.current.uv;
+    this.hourly = data.forecast.forecastday;
     this.weatherUnits(data);
   }
 
