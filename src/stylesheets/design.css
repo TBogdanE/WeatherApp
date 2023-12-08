@@ -205,12 +205,12 @@ body {
   justify-content: flex-start;
   align-items: center;
   transition: transform 0.5s ease;
+  height: 100%;
 }
 
 .forecast-sct-box {
   height: 9em;
   width: 5em;
-  background-color: red;
 }
 
 #previous-btn-box {
@@ -251,7 +251,7 @@ body {
   justify-content: center;
 }
 
-.week-forecast-sct-box {
+.forecast-sct-box {
   display: flex;
   justify-content: flex-start;
   align-items: center;
@@ -263,29 +263,52 @@ body {
   transition: 0.15s ease-in-out;
 }
 
-.week-forecast-sct-box:hover {
+.forecast-sct-box:hover {
   background-color: var(--body);
   filter: brightness(90%);
 }
 
-.week-forecast-sct-icon {
+.hourly-forecast-sct-box {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  flex-direction: column;
+  height: 9em;
+  width: 7em;
+  border-radius: 8px;
+  transition: 0.15s ease-in-out;
+  padding: 0 0.8em 0 0.8em;
+}
+
+.hourly-forecast-sct-box:hover {
+  background-color: var(--body);
+  filter: brightness(90%);
+}
+
+.forecast-sct-icon {
   width: 35%;
   padding: 0.5em;
 }
 
-.week-forecast-sct-temp {
+.forecast-sct-temp {
   font-size: 1.8em;
+  width: 2em;
   padding: 0.1em;
+  text-align: center;
 }
 
-.week-forecast-sct-range {
+.forecast-sct-range {
   font-size: 1em;
 }
 
-.week-forecast-sct-chances-rain {
+.forecast-sct-chances-rain {
   font-size: 0.8em;
 }
 
 .forecast-sct-time {
   font-size: 1em;
+}
+
+.forecast-sct-uv {
+  font-size: 0.7em;
 }
