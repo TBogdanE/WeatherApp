@@ -43,22 +43,22 @@ const weekDay = (weatherData) => {
   const box = document.getElementById("week-forecast-sct");
 
   const card = document.createElement("div");
-  card.classList.add("week-forecast-sct-box");
+  card.classList.add("forecast-sct-box");
 
   const icon = document.createElement("img");
-  icon.classList.add("week-forecast-sct-icon");
+  icon.classList.add("forecast-sct-icon");
   icon.src = "../src/assets/images/testicon.jpeg";
 
   const temperature = document.createElement("div");
-  temperature.classList.add("week-forecast-sct-temp");
+  temperature.classList.add("forecast-sct-temp");
   temperature.textContent = `${data.temp}°`;
 
   const range = document.createElement("div");
-  range.classList.add("week-forecast-sct-range");
+  range.classList.add("forecast-sct-range");
   range.textContent = `${data.minTemp}° / ${data.maxTemp}°`;
 
   const rain = document.createElement("div");
-  rain.classList.add("week-forecast-sct-chances-rain");
+  rain.classList.add("forecast-sct-chances-rain");
   rain.textContent = `${data.rain}%`;
 
   box.appendChild(card);
@@ -79,39 +79,57 @@ const updateWeekSct = (weatherData) => {
   weekDay(weatherData.getWeekDay(6));
 };
 
-const hourlyForecast = (weatherData) => {
+const updateHourlySct = (weatherData) => {
+  const currentHour = new Date().getHours();
+  let currentDay = weatherData.getHourly(0);
+  let nextDay = weatherData.getHourly(1);
+  console.log(currentDay);
+  for (let i = 0; i < 24; i++) {
+    let hour = (currentHour + i) % 24;
+    if (hour >= currentHour) {
+      console.log(">", hour);
+      hourlyForecast(hour, currentDay[hour]);
+    } else {
+      console.log("<", hour);
+      hourlyForecast(hour, nextDay[hour]);
+    }
+  }
+};
+
+const hourlyForecast = (hour, weatherData) => {
   const data = weatherData;
 
-  const box = document.getElementById("week-forecast-sct");
+  const box = document.querySelector(".slider");
 
   const card = document.createElement("div");
-  card.classList.add("week-forecast-sct-box");
+  card.classList.add("hourly-forecast-sct-box");
 
   const icon = document.createElement("img");
-  icon.classList.add("week-forecast-sct-icon");
+  icon.classList.add("forecast-sct-icon");
   icon.src = "../src/assets/images/testicon.jpeg";
 
   const temperature = document.createElement("div");
-  temperature.classList.add("week-forecast-sct-temp");
-  temperature.textContent = `${data.temp}°`;
+  temperature.classList.add("forecast-sct-temp");
+  temperature.textContent = `${data.temp_c}°`;
 
   const rain = document.createElement("div");
-  rain.classList.add("week-forecast-sct-chances-rain");
-  rain.textContent = `${data.rain}%`;
+  rain.classList.add("forecast-sct-chances-rain");
+  rain.textContent = `${data.chance_of_rain}%`;
 
   const uv = document.createElement("div");
-  uv.classList.add("week-forecast-sct-uv");
+  uv.classList.add("forecast-sct-uv");
   uv.textContent = `UV ${data.uv}`;
+
+  const time = document.createElement("div");
+  time.classList.add("forecast-sct-time");
+  time.textContent = `${hour}:00`;
 
   box.appendChild(card);
   card.appendChild(icon);
   card.appendChild(temperature);
   card.appendChild(rain);
   card.appendChild(uv);
-};
-
-const updateHourlySct = (weatherData) => {
-  console.log("hourly", weatherData.getHourly());
+  card.appendChild(time);
 };
 
 const clearDisplay = (id) => {
@@ -121,4 +139,27 @@ const clearDisplay = (id) => {
   }
 };
 
+const slider = document.querySelector(".slider");
+let currentIndex = 0;
+
+const scrollHourly = (direction) => {
+  const elementWidth = document.querySelector(
+    ".hourly-forecast-sct-box"
+  ).offsetWidth;
+  currentIndex = Math.max(
+    0,
+    Math.min(currentIndex + direction, slider.children.length - 1)
+  );
+  const newPosition = -currentIndex * elementWidth;
+  console.log(newPosition);
+
+  slider.style.transform = `translateX(${newPosition}px)`;
+};
+
+document
+  .getElementById("previous-btn")
+  .addEventListener("click", () => scrollHourly(-1));
+document
+  .getElementById("next-btn")
+  .addEventListener("click", () => scrollHourly(1));
 export { updateHourlySct, updateTodayCard, updateWeekSct };
