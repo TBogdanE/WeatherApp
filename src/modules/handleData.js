@@ -32,9 +32,10 @@ class WeatherHourly {
   }
 
   getData(day, hour) {
+    this.hourTemp = this.weatherUnits(day, hour);
     this.rain = this.hourlyData[day].hour[hour].chance_of_rain;
     this.uv = this.hourlyData[day].hour[hour].uv;
-    this.weatherUnits(day, hour);
+    //this.weatherUnits(day, hour);
     return {
       rain: this.rain,
       uv: this.uv,
@@ -44,9 +45,9 @@ class WeatherHourly {
 
   weatherUnits(day, hour) {
     if (temperatureUnits === "Celsius") {
-      this.hourTemp = this.hourlyData[day].hour[hour].temp_c;
+      return this.hourlyData[day].hour[hour].temp_c;
     } else {
-      this.hourTemp = this.hourlyData[day].hour[hour].temp_f;
+      return this.hourlyData[day].hour[hour].temp_f;
     }
   }
 }
