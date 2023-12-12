@@ -1,5 +1,6 @@
 import { weatherData, getWeatherData } from "./weatherApi";
 import { updateData } from "./handleData";
+import { initialLocalStorageCheck } from "./localStorage";
 
 let temperatureUnits = "Celsius";
 let locationSearch = "";
@@ -7,6 +8,7 @@ let locationSearch = "";
 const startApp = () => {
   leftMenu();
   inputLocation();
+  initialLocalStorageCheck("localStorage");
 };
 
 const inputLocation = () => {

@@ -1,6 +1,8 @@
 import { temperatureUnits } from "./webpage";
 import { updateHourlySct, updateTodayCard, updateWeekSct } from "./handleUi";
 
+let weatherLocationList = [];
+
 class WeatherDataHandler {
   constructor(weatherData) {
     this.todayWeather = new WeatherDay(weatherData);
