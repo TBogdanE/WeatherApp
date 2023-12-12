@@ -4,14 +4,14 @@ import { updateHourlySct, updateTodayCard, updateWeekSct } from "./handleUi";
 class WeatherDataHandler {
   constructor(weatherData) {
     this.todayWeather = new WeatherDay(weatherData);
-    //console.log("class", weatherData.forecast.forecastday);
+    this.hourlyWeather = new WeatherHourly(weatherData.forecast.forecastday);
     this.forecastWeather = weatherData.forecast.forecastday.map(
       (day) => new WeatherWeek(day)
     );
   }
 
-  getHourly(day) {
-    return this.todayWeather.hourly[day].hour;
+  getHourly(day, hour) {
+    return this.hourlyWeather.getData(day, hour);
   }
 
   getDay0() {
@@ -23,9 +23,36 @@ class WeatherDataHandler {
   }
 }
 
+class WeatherHourly {
+  constructor(data) {
+    this.hourlyData = data;
+    this.hourTemp = null;
+    this.rain = null;
+    this.uv = null;
+  }
+
+  getData(day, hour) {
+    this.rain = this.hourlyData[day].hour[hour].chance_of_rain;
+    this.uv = this.hourlyData[day].hour[hour].uv;
+    this.weatherUnits(day, hour);
+    return {
+      rain: this.rain,
+      uv: this.uv,
+      hourTemp: this.hourTemp,
+    };
+  }
+
+  weatherUnits(day, hour) {
+    if (temperatureUnits === "Celsius") {
+      this.hourTemp = this.hourlyData[day].hour[hour].temp_c;
+    } else {
+      this.hourTemp = this.hourlyData[day].hour[hour].temp_f;
+    }
+  }
+}
+
 class WeatherDay {
   constructor(data) {
-    this.units = temperatureUnits;
     this.todayTemp = null;
     this.feelsLike = null;
     this.country = data.location.country;
