@@ -1,6 +1,10 @@
 import { weatherData, getWeatherData } from "./weatherApi";
-import { updateData } from "./handleData";
-import { initialLocalStorageCheck } from "./localStorage";
+import { updateData, weatherLocationList } from "./handleData";
+import {
+  initialLocalStorageCheck,
+  removeLocalStorage,
+  updateLocalStorage,
+} from "./localStorage";
 
 let temperatureUnits = "Celsius";
 let locationSearch = "";
@@ -19,6 +23,7 @@ const inputLocation = () => {
       event.preventDefault();
       getWeatherData(locationSearch);
       location.value = "";
+      updateLocalStorage(locationSearch);
     }
   });
 };
@@ -58,7 +63,7 @@ const leftMenu = () => {
     deleteLocalStorageBtn.textContent = "Delete data";
     deleteLocalStorageBtn.classList.add("menu-box-btns");
     deleteLocalStorageBtn.addEventListener("click", hideLeftMenu);
-    //toggleUnitsBtn.addEventListener("click", deleteLocalStorageBtn);
+    deleteLocalStorageBtn.addEventListener("click", removeLocalStorage);
 
     const closeBtn = document.createElement("button");
     closeBtn.textContent = "Close";
@@ -80,4 +85,23 @@ const handleUnitsChange = () => {
   return temperatureUnits;
 };
 
-export { startApp, temperatureUnits };
+const locationNav = () => {
+  const nav = document.getElementById("locationNav");
+  nav.textContent = "";
+  weatherLocationList.forEach((location) => {
+    const btn = createNavBtns(location);
+    nav.appendChild(btn);
+  });
+};
+
+const createNavBtns = (location) => {
+  const btn = document.createElement("button");
+  btn.classList.add("navLocationBtn");
+  btn.textContent = location;
+  btn.addEventListener("click", () => {
+    getWeatherData(location);
+  });
+  return btn;
+};
+
+export { startApp, locationNav, temperatureUnits };
