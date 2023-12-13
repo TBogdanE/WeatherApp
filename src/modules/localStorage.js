@@ -1,18 +1,28 @@
+import { weatherLocationList } from "./handleData";
+import { locationNav } from "./webpage";
+
 const updateLocalStorage = (data) => {
   if (storageAvailable) {
-    localStorage.setItem("weatherLocationList", JSON.stringify(data));
+    weatherLocationList.push(data);
+    localStorage.setItem(
+      "weatherLocationList",
+      JSON.stringify(weatherLocationList)
+    );
   } else {
     console.error("Cannot add to local storage");
   }
 };
 
 const removeLocalStorage = () => {
+  console.error("Data from local storage was succsesfull removed");
   localStorage.clear();
 };
 
 const checkLocalStorage = () => {
   if (localStorage.getItem("weatherLocationList")) {
     const data = JSON.parse(localStorage.getItem("weatherLocationList"));
+    weatherLocationList.push(...data);
+    locationNav();
   } else {
     console.error("Local storage data was not found!");
   }

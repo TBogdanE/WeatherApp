@@ -1,4 +1,6 @@
 import { WeatherDataHandler, updateData } from "./handleData";
+import { locationNav } from "./webpage";
+import { updateLocalStorage } from "./localStorage";
 
 const API_KEY = "4ca2a973e04f4f71815125523233011";
 let weatherData = null;
@@ -10,15 +12,25 @@ const getWeatherData = async (address) => {
       { mode: "cors" }
     );
     const dataForecast = await responseForecast.json();
-
     console.log(dataForecast);
-
     weatherData = new WeatherDataHandler(dataForecast);
-
     updateData(weatherData);
+    locationNav();
+    updateLocalStorage(address);
   } catch (error) {
     console.error(error);
   }
 };
 
-export { weatherData, getWeatherData };
+const getIcons = async (weatherCode) => {
+  try {
+    const iconResponse = await fetch(
+      `http://openweathermap.org/img/wn/${weatherCode}.png`
+    );
+    console.log(iconResponse);
+  } catch (error) {
+    console.error("Error fetching icons", error);
+  }
+};
+
+export { weatherData, getWeatherData, getIcons };

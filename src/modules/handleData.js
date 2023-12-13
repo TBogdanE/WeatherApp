@@ -109,4 +109,4 @@ const updateData = (weatherData) => {
   updateWeekSct(weatherData);
 };
 
-export { WeatherDataHandler, WeatherDay, updateData };
+export { weatherLocationList, WeatherDataHandler, WeatherDay, updateData };

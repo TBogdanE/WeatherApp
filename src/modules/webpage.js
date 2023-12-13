@@ -23,7 +23,6 @@ const inputLocation = () => {
       event.preventDefault();
       getWeatherData(locationSearch);
       location.value = "";
-      updateLocalStorage(locationSearch);
     }
   });
 };
