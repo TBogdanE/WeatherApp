@@ -62,7 +62,10 @@ const leftMenu = () => {
     deleteLocalStorageBtn.textContent = "Delete data";
     deleteLocalStorageBtn.classList.add("menu-box-btns");
     deleteLocalStorageBtn.addEventListener("click", hideLeftMenu);
-    deleteLocalStorageBtn.addEventListener("click", removeLocalStorage);
+    deleteLocalStorageBtn.addEventListener("click", () => {
+      removeLocalStorage();
+      location.reload();
+    });
 
     const closeBtn = document.createElement("button");
     closeBtn.textContent = "Close";
@@ -96,7 +99,7 @@ const locationNav = () => {
 const createNavBtns = (location) => {
   const btn = document.createElement("button");
   btn.classList.add("navLocationBtn");
-  btn.textContent = location;
+  btn.textContent = location.charAt(0).toUpperCase() + location.slice(1);
   btn.addEventListener("click", () => {
     getWeatherData(location);
   });
