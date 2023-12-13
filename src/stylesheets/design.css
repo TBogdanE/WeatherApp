@@ -58,6 +58,22 @@ body {
   color: var(--text1);
 }
 
+/*location search*******************************************************************/
+#locationNav {
+  grid-area: 1 / 2 / 2 / 20;
+}
+
+.navLocationBtn {
+  background-color: transparent;
+  color: var(--text2);
+  min-width: 5em;
+  max-width: 10em;
+  border: 0.1em solid var(--text2);
+  border-radius: 3px;
+  padding: 0.1em;
+  margin: 0.2em;
+}
+
 /*today principal box*******************************************************************/
 #today-weather-box {
   grid-area: 2 / 2 / 8 / 12;
