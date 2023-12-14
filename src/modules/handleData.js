@@ -3,6 +3,8 @@ import { updateHourlySct, updateTodayCard, updateWeekSct } from "./handleUi";
 import { weatherStatus } from "./weather_conditions";
 
 let weatherLocationList = [];
+const CELSIUS = "Celsius";
+const FAHRENHEIT = "Fahrenheit";
 
 class WeatherDataHandler {
   constructor(weatherData) {
@@ -49,7 +51,7 @@ class WeatherHourly {
   }
 
   weatherUnits(day, hour) {
-    if (temperatureUnits === "Celsius") {
+    if (temperatureUnits === CELSIUS) {
       return this.hourlyData[day].hour[hour].temp_c;
     } else {
       return this.hourlyData[day].hour[hour].temp_f;
@@ -74,7 +76,7 @@ class WeatherDay {
   }
 
   weatherUnits(data) {
-    if (temperatureUnits === "Celsius") {
+    if (temperatureUnits === CELSIUS) {
       this.todayTemp = data.current.temp_c;
       this.feelsLike = data.current.feelslike_c;
     } else {
@@ -96,7 +98,7 @@ class WeatherWeek {
   }
 
   weatherUnits(data) {
-    if (temperatureUnits === "Celsius") {
+    if (temperatureUnits === CELSIUS) {
       this.temp = data.day.avgtemp_c;
       this.minTemp = data.day.mintemp_c;
       this.maxTemp = data.day.maxtemp_c;

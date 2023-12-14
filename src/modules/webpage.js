@@ -6,17 +6,22 @@ import {
   updateLocalStorage,
 } from "./localStorage";
 
-let temperatureUnits = "Celsius";
+const CELSIUS = "Celsius";
+const FAHRENHEIT = "Fahrenheit";
+let temperatureUnits = CELSIUS;
 let locationSearch = "";
 
+//initialise the UI and check if browser supports local storage
 const startApp = () => {
   leftMenu();
   inputLocation();
   initialLocalStorageCheck("localStorage");
 };
 
+//handles the location input form
 const inputLocation = () => {
   const location = document.getElementById("input-location");
+
   location.addEventListener("keydown", (event) => {
     if (event.key == "Enter") {
       locationSearch = location.value;
@@ -27,10 +32,12 @@ const inputLocation = () => {
   });
 };
 
+//initialise the pop up menu
 const leftMenu = () => {
   const body = document.querySelector("body");
   const btn = document.getElementById("menu-btn");
 
+  //make menu dissapear on escape btn click
   btn.addEventListener("click", () => {
     const handleEscapeKey = (event) => {
       if ((menu && event.key === "Escape") || event.key === 27) {
@@ -38,6 +45,7 @@ const leftMenu = () => {
       }
     };
 
+    //handles the cancelation of the left menu
     const hideLeftMenu = () => {
       if (body.contains(menu)) {
         body.removeChild(menu);
@@ -45,6 +53,7 @@ const leftMenu = () => {
       }
     };
 
+    //creates the body of the pop up menu
     const menu = document.createElement("div");
     menu.id = "menu-box";
 
@@ -80,8 +89,9 @@ const leftMenu = () => {
   });
 };
 
+//handles the change of units from Celsius to Fahrenheit
 const handleUnitsChange = () => {
-  temperatureUnits = temperatureUnits === "Celsius" ? "Fahrenheit" : "Celsius";
+  temperatureUnits = temperatureUnits === CELSIUS ? FAHRENHEIT : CELSIUS;
   getWeatherData(locationSearch);
 
   return temperatureUnits;
