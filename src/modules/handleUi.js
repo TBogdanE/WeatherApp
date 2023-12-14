@@ -1,3 +1,32 @@
+const initialPage = () => {
+  const body = document.querySelector("body");
+  const initialPage = document.createElement("div");
+  initialPage.id = "initial-page";
+
+  const title = document.createElement("div");
+  title.id = "initial-page-title";
+  title.textContent = "TBWeather";
+
+  const text = document.createElement("div");
+  text.id = "initial-page-text";
+  text.textContent =
+    "First time here? Search for a country or city around the world :)";
+
+  const form = document.createElement("form");
+  form.id = "initial-page-form";
+
+  const formInput = document.createElement("input");
+  formInput.type = "text";
+  formInput.placeholder = "City";
+  formInput.id = "initial-page-input";
+
+  body.appendChild(initialPage);
+  initialPage.appendChild(title);
+  initialPage.appendChild(text);
+  initialPage.appendChild(form);
+  form.appendChild(formInput);
+};
+
 //creates and handles the data on today forecast card
 const updateTodayCard = (weatherData) => {
   const weather = weatherData.getDay0();
@@ -164,4 +193,4 @@ document
   .getElementById("next-btn")
   .addEventListener("click", () => scrollHourly(1));
 
-export { updateHourlySct, updateTodayCard, updateWeekSct };
+export { initialPage, updateHourlySct, updateTodayCard, updateWeekSct };

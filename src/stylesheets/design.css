@@ -20,6 +20,66 @@ body {
   background-color: var(--body);
   height: 100vh;
 }
+
+/*initial page*******************************************************************/
+#initial-page {
+  display: grid;
+  grid-template-columns: repeat(20, 1fr);
+  grid-template-rows: repeat(20, 1fr);
+  background-color: var(--body);
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 100;
+}
+
+#initial-page-title {
+  grid-area: 2 / 5 / 5 / 17;
+  text-align: center;
+  font-size: 5em;
+  font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
+    "Lucida Sans", Arial, sans-serif;
+  color: var(--text2);
+}
+
+#initial-page-text {
+  grid-area: 6 / 5 / 8 / 17;
+  text-align: center;
+  font-size: 1.3em;
+  font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
+    "Lucida Sans", Arial, sans-serif;
+  color: var(--text2);
+}
+
+#initial-page-form {
+  grid-area: 7 / 7 / 12 / 15;
+  display: flex;
+  justify-content: center;
+  align-self: center;
+}
+
+#initial-page-input {
+  height: 2em;
+  width: 100%;
+  background-color: transparent;
+  color: var(--text2);
+  border: 0.15em solid var(--btn);
+  border-radius: 8px;
+  padding: 0.5em;
+  transition: 0.1s;
+}
+
+#initial-page-input:hover {
+  background-color: var(--btn);
+  color: var(--text1);
+}
+
+#initial-page-input:focus {
+  background-color: var(--btn);
+  color: var(--text1);
+}
 /*menu*******************************************************************/
 #menu-btn {
   grid-area: 1 / 1 / 2 / 2;
