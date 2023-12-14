@@ -4,7 +4,7 @@ const updateTodayCard = (weatherData) => {
   const iconBox = document.getElementById("today-weather-icon-box");
   const icon = document.createElement("img");
   icon.id = "today-weather-icon";
-  //icon.src = getIcons();
+  icon.src = weather.icon;
   iconBox.appendChild(icon);
 
   const todayTemp = document.getElementById("today-weather-temp");
@@ -38,8 +38,6 @@ const updateTodayCard = (weatherData) => {
 const weekDay = (weatherData) => {
   const data = weatherData;
 
-  console.log(data);
-
   const box = document.getElementById("week-forecast-sct");
 
   const card = document.createElement("div");
@@ -47,7 +45,7 @@ const weekDay = (weatherData) => {
 
   const icon = document.createElement("img");
   icon.classList.add("forecast-sct-icon");
-  icon.src = "../src/assets/images/testicon.jpeg";
+  icon.src = weatherData.icon;
 
   const temperature = document.createElement("div");
   temperature.classList.add("forecast-sct-temp");
@@ -69,7 +67,7 @@ const weekDay = (weatherData) => {
 };
 
 const updateWeekSct = (weatherData) => {
-  clearDisplay("week-forecast-sct");
+  clearDisplay("#week-forecast-sct");
   weekDay(weatherData.getWeekDay(0));
   weekDay(weatherData.getWeekDay(1));
   weekDay(weatherData.getWeekDay(2));
@@ -80,25 +78,23 @@ const updateWeekSct = (weatherData) => {
 };
 
 const updateHourlySct = (weatherData) => {
+  clearDisplay(".slider");
+  const data = weatherData;
   const currentHour = new Date().getHours();
-  let currentDay = weatherData.getHourly(0);
-  let nextDay = weatherData.getHourly(1);
-  console.log(currentDay);
+  const today = 0;
+  const tommorow = 1;
+
   for (let i = 0; i < 24; i++) {
     let hour = (currentHour + i) % 24;
     if (hour >= currentHour) {
-      console.log(">", hour);
-      hourlyForecast(hour, currentDay[hour]);
+      hourlyForecast(hour, data.getHourly(today, hour));
     } else {
-      console.log("<", hour);
-      hourlyForecast(hour, nextDay[hour]);
+      hourlyForecast(hour, data.getHourly(tommorow, hour));
     }
   }
 };
 
 const hourlyForecast = (hour, weatherData) => {
-  const data = weatherData;
-
   const box = document.querySelector(".slider");
 
   const card = document.createElement("div");
@@ -106,19 +102,19 @@ const hourlyForecast = (hour, weatherData) => {
 
   const icon = document.createElement("img");
   icon.classList.add("forecast-sct-icon");
-  icon.src = "../src/assets/images/testicon.jpeg";
+  icon.src = weatherData.icon;
 
   const temperature = document.createElement("div");
   temperature.classList.add("forecast-sct-temp");
-  temperature.textContent = `${data.temp_c}°`;
+  temperature.textContent = `${weatherData.hourTemp}°`;
 
   const rain = document.createElement("div");
   rain.classList.add("forecast-sct-chances-rain");
-  rain.textContent = `${data.chance_of_rain}%`;
+  rain.textContent = `${weatherData.rain}%`;
 
   const uv = document.createElement("div");
   uv.classList.add("forecast-sct-uv");
-  uv.textContent = `UV ${data.uv}`;
+  uv.textContent = `UV ${weatherData.uv}`;
 
   const time = document.createElement("div");
   time.classList.add("forecast-sct-time");
@@ -132,8 +128,8 @@ const hourlyForecast = (hour, weatherData) => {
   card.appendChild(time);
 };
 
-const clearDisplay = (id) => {
-  const box = document.getElementById(id);
+const clearDisplay = (element) => {
+  const box = document.querySelector(element);
   while (box.firstChild) {
     box.removeChild(box.firstChild);
   }
@@ -151,7 +147,6 @@ const scrollHourly = (direction) => {
     Math.min(currentIndex + direction, slider.children.length - 1)
   );
   const newPosition = -currentIndex * elementWidth;
-  console.log(newPosition);
 
   slider.style.transform = `translateX(${newPosition}px)`;
 };

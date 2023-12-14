@@ -1,5 +1,6 @@
 import { temperatureUnits } from "./webpage";
 import { updateHourlySct, updateTodayCard, updateWeekSct } from "./handleUi";
+import { weatherStatus } from "./weather_conditions";
 
 let weatherLocationList = [];
 
@@ -28,17 +29,19 @@ class WeatherDataHandler {
 class WeatherHourly {
   constructor(data) {
     this.hourlyData = data;
+    this.icon = null;
     this.hourTemp = null;
     this.rain = null;
     this.uv = null;
   }
 
   getData(day, hour) {
+    this.icon = getIcon(this.hourlyData[day].hour[hour].condition.code);
     this.hourTemp = this.weatherUnits(day, hour);
     this.rain = this.hourlyData[day].hour[hour].chance_of_rain;
     this.uv = this.hourlyData[day].hour[hour].uv;
-    //this.weatherUnits(day, hour);
     return {
+      icon: this.icon,
       rain: this.rain,
       uv: this.uv,
       hourTemp: this.hourTemp,
@@ -56,6 +59,7 @@ class WeatherHourly {
 
 class WeatherDay {
   constructor(data) {
+    this.icon = getIcon(data.current.condition.code);
     this.todayTemp = null;
     this.feelsLike = null;
     this.country = data.location.country;
@@ -82,6 +86,7 @@ class WeatherDay {
 
 class WeatherWeek {
   constructor(data) {
+    this.icon = getIcon(data.day.condition.code);
     this.temp = null;
     this.minTemp = null;
     this.maxTemp = null;
@@ -102,6 +107,16 @@ class WeatherWeek {
     }
   }
 }
+
+const getIcon = (code) => {
+  const iconObj = weatherStatus.find((obj) => obj.code === code);
+  const hour = new Date().getHours();
+  if (hour < 20 && hour > 6) {
+    return `../src/assets/weather icons/day/${iconObj.icon}.png`;
+  } else {
+    return `../src/assets/weather icons/night/${iconObj.icon}.png`;
+  }
+};
 
 const updateData = (weatherData) => {
   updateTodayCard(weatherData);
