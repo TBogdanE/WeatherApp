@@ -1,11 +1,10 @@
+//creates and handles the data on today forecast card
 const updateTodayCard = (weatherData) => {
   const weather = weatherData.getDay0();
 
-  const iconBox = document.getElementById("today-weather-icon-box");
-  const icon = document.createElement("img");
+  const icon = document.getElementById("today-weather-icon");
   icon.id = "today-weather-icon";
   icon.src = weather.icon;
-  iconBox.appendChild(icon);
 
   const todayTemp = document.getElementById("today-weather-temp");
   todayTemp.textContent = `${weather.todayTemp}°C`;
@@ -35,6 +34,7 @@ const updateTodayCard = (weatherData) => {
   uvLevel.textContent = weather.uvLevele;
 };
 
+//creates and handles the data on specific day of the actual week
 const weekDay = (weatherData) => {
   const data = weatherData;
 
@@ -66,6 +66,7 @@ const weekDay = (weatherData) => {
   card.appendChild(rain);
 };
 
+//updates the week forecast sct with the data of everyday
 const updateWeekSct = (weatherData) => {
   clearDisplay("#week-forecast-sct");
   weekDay(weatherData.getWeekDay(0));
@@ -77,6 +78,7 @@ const updateWeekSct = (weatherData) => {
   weekDay(weatherData.getWeekDay(6));
 };
 
+//updates the hourly forecast sct with data
 const updateHourlySct = (weatherData) => {
   clearDisplay(".slider");
   const data = weatherData;
@@ -85,6 +87,7 @@ const updateHourlySct = (weatherData) => {
   const tommorow = 1;
 
   for (let i = 0; i < 24; i++) {
+    //displays the hourly forecast, for the next 24 hours, for today and tommorow
     let hour = (currentHour + i) % 24;
     if (hour >= currentHour) {
       hourlyForecast(hour, data.getHourly(today, hour));
@@ -94,6 +97,7 @@ const updateHourlySct = (weatherData) => {
   }
 };
 
+//creates and handles the data for today hourly forecast
 const hourlyForecast = (hour, weatherData) => {
   const box = document.querySelector(".slider");
 
@@ -128,6 +132,7 @@ const hourlyForecast = (hour, weatherData) => {
   card.appendChild(time);
 };
 
+//clears displayed data on specific sct
 const clearDisplay = (element) => {
   const box = document.querySelector(element);
   while (box.firstChild) {
@@ -135,6 +140,7 @@ const clearDisplay = (element) => {
   }
 };
 
+//slider for hourly forecast
 const slider = document.querySelector(".slider");
 let currentIndex = 0;
 
@@ -157,4 +163,5 @@ document
 document
   .getElementById("next-btn")
   .addEventListener("click", () => scrollHourly(1));
+
 export { updateHourlySct, updateTodayCard, updateWeekSct };

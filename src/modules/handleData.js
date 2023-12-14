@@ -2,10 +2,14 @@ import { temperatureUnits } from "./webpage";
 import { updateHourlySct, updateTodayCard, updateWeekSct } from "./handleUi";
 import { weatherStatus } from "./weather_conditions";
 
+//variables
 let weatherLocationList = [];
 const CELSIUS = "Celsius";
 const FAHRENHEIT = "Fahrenheit";
 
+//this class will take all the data from the server
+//and based on that data, will create new classes that
+//handles the hourly, today, and weekly forecast
 class WeatherDataHandler {
   constructor(weatherData) {
     this.todayWeather = new WeatherDay(weatherData);
@@ -15,19 +19,23 @@ class WeatherDataHandler {
     );
   }
 
+  //returns data for every hour, of specific day
   getHourly(day, hour) {
     return this.hourlyWeather.getData(day, hour);
   }
 
+  //returns all data for today forecast
   getDay0() {
     return this.todayWeather;
   }
 
+  //returns data for day of the week
   getWeekDay(day) {
     return this.forecastWeather[day];
   }
 }
 
+//manages the data for hourly forecast
 class WeatherHourly {
   constructor(data) {
     this.hourlyData = data;
@@ -37,6 +45,7 @@ class WeatherHourly {
     this.uv = null;
   }
 
+  //this method returns data for a specific hour, of a specific day
   getData(day, hour) {
     this.icon = getIcon(this.hourlyData[day].hour[hour].condition.code);
     this.hourTemp = this.weatherUnits(day, hour);
@@ -50,6 +59,7 @@ class WeatherHourly {
     };
   }
 
+  //returns the forecast in C and F
   weatherUnits(day, hour) {
     if (temperatureUnits === CELSIUS) {
       return this.hourlyData[day].hour[hour].temp_c;
@@ -59,6 +69,7 @@ class WeatherHourly {
   }
 }
 
+//handles the data for today forecast
 class WeatherDay {
   constructor(data) {
     this.icon = getIcon(data.current.condition.code);
@@ -75,6 +86,7 @@ class WeatherDay {
     this.weatherUnits(data);
   }
 
+  //returns the forecast in C and F
   weatherUnits(data) {
     if (temperatureUnits === CELSIUS) {
       this.todayTemp = data.current.temp_c;
@@ -86,6 +98,7 @@ class WeatherDay {
   }
 }
 
+//handles the forecast data for every day of the week
 class WeatherWeek {
   constructor(data) {
     this.icon = getIcon(data.day.condition.code);
@@ -96,7 +109,7 @@ class WeatherWeek {
     this.hourly = null;
     this.weatherUnits(data);
   }
-
+  //returns the forecast in C and F
   weatherUnits(data) {
     if (temperatureUnits === CELSIUS) {
       this.temp = data.day.avgtemp_c;
@@ -110,9 +123,11 @@ class WeatherWeek {
   }
 }
 
+//returns the icon from the folder, based on a specific code from the API
 const getIcon = (code) => {
   const iconObj = weatherStatus.find((obj) => obj.code === code);
   const hour = new Date().getHours();
+  //checks if it's day/night and returns the data
   if (hour < 20 && hour > 6) {
     return `../src/assets/weather icons/day/${iconObj.icon}.png`;
   } else {
@@ -120,6 +135,7 @@ const getIcon = (code) => {
   }
 };
 
+//if data is fetched, this will update the data
 const updateData = (weatherData) => {
   updateTodayCard(weatherData);
   updateHourlySct(weatherData);

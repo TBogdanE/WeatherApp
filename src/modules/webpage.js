@@ -6,6 +6,7 @@ import {
   updateLocalStorage,
 } from "./localStorage";
 
+//variables
 const CELSIUS = "Celsius";
 const FAHRENHEIT = "Fahrenheit";
 let temperatureUnits = CELSIUS;
@@ -57,6 +58,7 @@ const leftMenu = () => {
     const menu = document.createElement("div");
     menu.id = "menu-box";
 
+    //adds btn for toggling the units type
     const toggleUnitsBtn = document.createElement("button");
     toggleUnitsBtn.id = "menu-toggle-units-btn";
     toggleUnitsBtn.textContent = temperatureUnits;
@@ -66,6 +68,7 @@ const leftMenu = () => {
       hideLeftMenu();
     });
 
+    //adds btn that deletes the local storage data
     const deleteLocalStorageBtn = document.createElement("button");
     deleteLocalStorageBtn.id = "menu-delete-lcs-btn";
     deleteLocalStorageBtn.textContent = "Delete data";
@@ -76,6 +79,7 @@ const leftMenu = () => {
       location.reload();
     });
 
+    //adds btn for closing the menu
     const closeBtn = document.createElement("button");
     closeBtn.textContent = "Close";
     closeBtn.classList.add("menu-box-btns");
@@ -93,22 +97,25 @@ const leftMenu = () => {
 const handleUnitsChange = () => {
   temperatureUnits = temperatureUnits === CELSIUS ? FAHRENHEIT : CELSIUS;
   getWeatherData(locationSearch, false);
-
   return temperatureUnits;
 };
 
+//adds the new cityes that users searches for in the nav menu
 const locationNav = () => {
   const nav = document.getElementById("locationNav");
   nav.textContent = "";
+  //for each location added in the local storage, a new btn will be created
   weatherLocationList.forEach((location) => {
     const btn = createNavBtns(location);
     nav.appendChild(btn);
   });
 };
 
+//handles the creation of the btns that will be added in the nav
 const createNavBtns = (location) => {
   const btn = document.createElement("button");
   btn.classList.add("navLocationBtn");
+  //makes the first letter uppercase
   btn.textContent = location.charAt(0).toUpperCase() + location.slice(1);
   btn.addEventListener("click", () => {
     getWeatherData(location, false);

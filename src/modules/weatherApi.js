@@ -15,10 +15,11 @@ const getWeatherData = async (address, update) => {
       `http://api.weatherapi.com/v1/forecast.json?key=${API_KEY}&q=${address}&days=7`,
       { mode: "cors" }
     );
+
     const dataForecast = await responseForecast.json();
-    console.log(dataForecast);
     weatherData = new WeatherDataHandler(dataForecast);
     updateData(weatherData);
+
     if (update) {
       updateLocalStorage(address);
       locationNav();
