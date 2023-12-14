@@ -26,7 +26,7 @@ const inputLocation = () => {
     if (event.key == "Enter") {
       locationSearch = location.value;
       event.preventDefault();
-      getWeatherData(locationSearch);
+      getWeatherData(locationSearch, true);
       location.value = "";
     }
   });
@@ -92,7 +92,7 @@ const leftMenu = () => {
 //handles the change of units from Celsius to Fahrenheit
 const handleUnitsChange = () => {
   temperatureUnits = temperatureUnits === CELSIUS ? FAHRENHEIT : CELSIUS;
-  getWeatherData(locationSearch);
+  getWeatherData(locationSearch, false);
 
   return temperatureUnits;
 };
@@ -111,7 +111,7 @@ const createNavBtns = (location) => {
   btn.classList.add("navLocationBtn");
   btn.textContent = location.charAt(0).toUpperCase() + location.slice(1);
   btn.addEventListener("click", () => {
-    getWeatherData(location);
+    getWeatherData(location, false);
   });
   return btn;
 };
