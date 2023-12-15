@@ -26,7 +26,7 @@ const initialPage = () => {
   const handleSearchInput = (event) => {
     if (event.key == "Enter") {
       event.preventDefault();
-      getWeatherData(formInput.value, true);
+      getWeatherData(locationSearch(formInput.value), true);
       formInput.value = "";
       body.removeChild(initialPage);
     }

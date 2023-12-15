@@ -10,7 +10,14 @@ import {
 const CELSIUS = "Celsius";
 const FAHRENHEIT = "Fahrenheit";
 let temperatureUnits = CELSIUS;
-let locationSearch = "";
+let locationSearchValue = "";
+
+const locationSearch = (value) => {
+  if (value !== undefined) {
+    locationSearchValue = value;
+  }
+  return locationSearchValue;
+};
 
 //initialise the UI and check if browser supports local storage
 const startApp = () => {
@@ -25,9 +32,8 @@ const inputLocation = () => {
 
   location.addEventListener("keydown", (event) => {
     if (event.key == "Enter") {
-      locationSearch = location.value;
+      getWeatherData(locationSearch(location.value), true);
       event.preventDefault();
-      getWeatherData(locationSearch, true);
       location.value = "";
     }
   });
@@ -96,7 +102,7 @@ const leftMenu = () => {
 //handles the change of units from Celsius to Fahrenheit
 const handleUnitsChange = () => {
   temperatureUnits = temperatureUnits === CELSIUS ? FAHRENHEIT : CELSIUS;
-  getWeatherData(locationSearch, false);
+  getWeatherData(locationSearch(), false);
   return temperatureUnits;
 };
 
@@ -123,4 +129,4 @@ const createNavBtns = (location) => {
   return btn;
 };
 
-export { startApp, locationNav, temperatureUnits };
+export { startApp, locationNav, locationSearch, temperatureUnits };
