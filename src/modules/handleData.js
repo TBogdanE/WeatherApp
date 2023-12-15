@@ -62,9 +62,9 @@ class WeatherHourly {
   //returns the forecast in C and F
   weatherUnits(day, hour) {
     if (temperatureUnits === CELSIUS) {
-      return this.hourlyData[day].hour[hour].temp_c;
+      return `${this.hourlyData[day].hour[hour].temp_c}°C`;
     } else {
-      return this.hourlyData[day].hour[hour].temp_f;
+      return `${this.hourlyData[day].hour[hour].temp_f}°F`;
     }
   }
 }
@@ -89,11 +89,11 @@ class WeatherDay {
   //returns the forecast in C and F
   weatherUnits(data) {
     if (temperatureUnits === CELSIUS) {
-      this.todayTemp = data.current.temp_c;
-      this.feelsLike = data.current.feelslike_c;
+      this.todayTemp = `${data.current.temp_c}°C`;
+      this.feelsLike = `${data.current.feelslike_c}°C`;
     } else {
-      this.todayTemp = data.current.temp_f;
-      this.feelsLike = data.current.feelslike_f;
+      this.todayTemp = `${data.current.temp_f}°F`;
+      this.feelsLike = `${data.current.feelslike_f}°F`;
     }
   }
 }
@@ -112,13 +112,13 @@ class WeatherWeek {
   //returns the forecast in C and F
   weatherUnits(data) {
     if (temperatureUnits === CELSIUS) {
-      this.temp = data.day.avgtemp_c;
-      this.minTemp = data.day.mintemp_c;
-      this.maxTemp = data.day.maxtemp_c;
+      this.temp = `${data.day.avgtemp_c}°C`;
+      this.minTemp = `${data.day.mintemp_c}`;
+      this.maxTemp = `${data.day.maxtemp_c}°C`;
     } else {
-      this.temp = data.day.avgtemp_f;
+      this.temp = `${data.day.avgtemp_f}°F`;
       this.minTemp = data.day.mintemp_f;
-      this.maxTemp = data.day.maxtemp_f;
+      this.maxTemp = `${data.day.maxtemp_f}°F`;
     }
   }
 }
