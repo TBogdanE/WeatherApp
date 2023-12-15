@@ -1,3 +1,6 @@
+import { locationSearch } from "./webpage";
+import { getWeatherData } from "./weatherApi";
+
 const initialPage = () => {
   const body = document.querySelector("body");
   const initialPage = document.createElement("div");
@@ -19,6 +22,14 @@ const initialPage = () => {
   formInput.type = "text";
   formInput.placeholder = "City";
   formInput.id = "initial-page-input";
+  formInput.addEventListener("keydown", (event) => {
+    if (event.key === "Enter") {
+      locationSearch = formInput.value;
+      event.preventDefault();
+      getWeatherData(locationSearch, true);
+      formInput.value = "";
+    }
+  });
 
   body.appendChild(initialPage);
   initialPage.appendChild(title);
