@@ -22,14 +22,17 @@ const initialPage = () => {
   formInput.type = "text";
   formInput.placeholder = "City";
   formInput.id = "initial-page-input";
-  formInput.addEventListener("keydown", (event) => {
-    if (event.key === "Enter") {
-      locationSearch = formInput.value;
+
+  const handleSearchInput = (event) => {
+    if (event.key == "Enter") {
       event.preventDefault();
-      getWeatherData(locationSearch, true);
+      getWeatherData(formInput.value, true);
       formInput.value = "";
+      body.removeChild(initialPage);
     }
-  });
+  };
+
+  formInput.addEventListener("keydown", handleSearchInput);
 
   body.appendChild(initialPage);
   initialPage.appendChild(title);
