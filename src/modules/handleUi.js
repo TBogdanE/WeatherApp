@@ -20,8 +20,11 @@ const initialPage = () => {
 
   const formInput = document.createElement("input");
   formInput.type = "text";
-  formInput.placeholder = "City";
   formInput.id = "initial-page-input";
+
+  const footer = document.createElement("div");
+  footer.id = "initial-page-footer";
+  footer.textContent = "Project made following TOP curriculum by TBogdanE";
 
   const handleSearchInput = (event) => {
     if (event.key == "Enter") {
@@ -39,6 +42,7 @@ const initialPage = () => {
   initialPage.appendChild(text);
   initialPage.appendChild(form);
   form.appendChild(formInput);
+  initialPage.appendChild(footer);
 };
 
 //creates and handles the data on today forecast card
@@ -50,7 +54,7 @@ const updateTodayCard = (weatherData) => {
   icon.src = weather.icon;
 
   const todayTemp = document.getElementById("today-weather-temp");
-  todayTemp.textContent = `${weather.todayTemp}°C`;
+  todayTemp.textContent = weather.todayTemp;
 
   const locationName = document.getElementById("today-weather-name");
   locationName.textContent = weather.name;
@@ -59,7 +63,7 @@ const updateTodayCard = (weatherData) => {
   country.textContent = weather.country;
 
   const tempFeel = document.getElementById("today-weather-feel");
-  tempFeel.textContent = `Feels like ${weather.feelsLike}°C`;
+  tempFeel.textContent = `Feels like ${weather.feelsLike}`;
 
   const windSpeed = document.getElementById("today-weather-sct-wind-value");
   windSpeed.textContent = weather.wind;
@@ -92,11 +96,11 @@ const weekDay = (weatherData) => {
 
   const temperature = document.createElement("div");
   temperature.classList.add("forecast-sct-temp");
-  temperature.textContent = `${data.temp}°`;
+  temperature.textContent = data.temp;
 
   const range = document.createElement("div");
   range.classList.add("forecast-sct-range");
-  range.textContent = `${data.minTemp}° / ${data.maxTemp}°`;
+  range.textContent = `${data.minTemp} / ${data.maxTemp}`;
 
   const rain = document.createElement("div");
   rain.classList.add("forecast-sct-chances-rain");
@@ -153,7 +157,7 @@ const hourlyForecast = (hour, weatherData) => {
 
   const temperature = document.createElement("div");
   temperature.classList.add("forecast-sct-temp");
-  temperature.textContent = `${weatherData.hourTemp}°`;
+  temperature.textContent = weatherData.hourTemp;
 
   const rain = document.createElement("div");
   rain.classList.add("forecast-sct-chances-rain");
