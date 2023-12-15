@@ -1,7 +1,11 @@
 import { weatherLocationList } from "./handleData";
-import { locationNav } from "./webpage";
+import { locationNav, locationSearch } from "./webpage";
+import { initialPage } from "./handleUi";
+import { getWeatherData } from "./weatherApi";
 
+//adds data to the local storage
 const updateLocalStorage = (data) => {
+  //checks if local storage is available
   if (storageAvailable) {
     weatherLocationList.push(data);
     localStorage.setItem(
@@ -13,21 +17,31 @@ const updateLocalStorage = (data) => {
   }
 };
 
+//delete all the data contained in the local storage
 const removeLocalStorage = () => {
   console.error("Data from local storage was succsesfull removed");
   localStorage.clear();
 };
 
+//check if there is data in the local storage
 const checkLocalStorage = () => {
+  //searches for the weather location lost
   if (localStorage.getItem("weatherLocationList")) {
     const data = JSON.parse(localStorage.getItem("weatherLocationList"));
     weatherLocationList.push(...data);
     locationNav();
+    locationSearch(data[0]);
+    //displays the data of the first location in the list once the page has been reloaded
+    getWeatherData(data[0]);
   } else {
-    console.error("Local storage data was not found!");
+    //if there is no data in the local storage, the initial page will show up
+    initialPage();
+    locationNav();
+    console.log("Local storage data was not found!");
   }
 };
 
+//cheks to see if local storage is supported by the browser
 const initialLocalStorageCheck = (storageType) => {
   if (!storageAvailable(storageType)) {
     console.error("No local storage available");
