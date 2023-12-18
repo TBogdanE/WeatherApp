@@ -51,6 +51,7 @@ body {
   font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
     "Lucida Sans", Arial, sans-serif;
   color: var(--text2);
+  font-style: italic;
 }
 
 #initial-page-form {
@@ -80,35 +81,51 @@ body {
   background-color: var(--btn);
   color: var(--text1);
 }
+
+#initial-page-footer {
+  grid-area: 20 / 1 / 21 / 21;
+  text-align: center;
+  font-style: italic;
+  color: var(--text2);
+  font-size: 0.8em;
+}
 /*menu*******************************************************************/
-#menu-btn {
+#menu-btn-box {
   grid-area: 1 / 1 / 2 / 2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+}
+#menu-btn {
   border: 0.1em solid var(--btn);
-  width: 50%;
-  height: 50%;
   color: var(--text2);
   text-align: center;
   border-radius: 5px;
+  width: 50%;
+  height: 50%;
 }
 
 #menu-box {
-  grid-area: 1 / 1 / 9 / 6;
+  grid-area: 1 / 1 / 9 / 5;
   display: flex;
   justify-content: flex-start;
   align-items: center;
   flex-direction: column;
   background-color: var(--elements1);
-  border: 0.05em solid var(--elements2);
+  border: 0.09em solid var(--elements2);
   border-radius: 5px;
+  box-shadow: 2px 2px 4px 1px rgba(0, 0, 0, 0.3); /* Adjust the values as needed */
 }
 
 .menu-box-btns {
-  width: 80%;
+  width: 95%;
   background-color: transparent;
   border: 0.1em solid var(--elements2);
   border-radius: 5px;
   color: var(--text2);
-  padding: 0.3em;
+  padding: 0.4em;
   margin: 0.3em;
   transition: 0.2s;
 }
@@ -121,6 +138,10 @@ body {
 /*location search*******************************************************************/
 #locationNav {
   grid-area: 1 / 2 / 2 / 20;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
 }
 
 .navLocationBtn {
@@ -136,7 +157,7 @@ body {
 
 /*today principal box*******************************************************************/
 #today-weather-box {
-  grid-area: 2 / 2 / 8 / 12;
+  grid-area: 3 / 2 / 9 / 11;
   display: grid;
   grid-template-columns: repeat(15, 1fr);
   grid-template-rows: repeat(10, 1fr);
@@ -146,14 +167,14 @@ body {
 }
 
 #today-weather-icon-box {
-  grid-area: 1 / 2 / 5 / 5;
+  grid-area: 1 / 1 / 5 / 5;
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
 #today-weather-icon {
-  width: 90%;
+  width: 70%;
   margin: 0.3em;
 }
 
@@ -236,10 +257,14 @@ body {
 
 /*Input box*******************************************************************/
 #search-location-box {
-  grid-area: 2 / 14 / 3 / 19;
+  grid-area: 3 / 15 / 4 / 20;
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+#search-location-form {
+  width: 90%;
 }
 
 #input-location {
@@ -311,7 +336,8 @@ body {
   border: 0.1em solid var(--btn);
   border-radius: 45%;
   text-align: center;
-  transition: 0.2s ease-in-out;
+  transition: 0.3s ease-in-out;
+  z-index: 2;
 }
 
 .next-previous-btn:hover {
@@ -334,9 +360,9 @@ body {
   align-items: center;
   flex-direction: column;
   margin: 0.5em;
-  height: 8em;
+  height: 100%;
   width: 7em;
-  border-radius: 8px;
+  border-radius: 10px;
   transition: 0.15s ease-in-out;
 }
 
@@ -350,11 +376,11 @@ body {
   justify-content: flex-start;
   align-items: center;
   flex-direction: column;
-  height: 9em;
-  width: 7em;
-  border-radius: 8px;
+  height: 100%;
+  width: 9em;
+  border-radius: 10px;
   transition: 0.15s ease-in-out;
-  padding: 0 0.8em 0 0.8em;
+  padding: 0 1em 0 1em;
   color: var(--text2);
 }
 
@@ -363,30 +389,38 @@ body {
   filter: brightness(90%);
 }
 
-.forecast-sct-icon {
-  width: 35%;
-  padding: 0.5em;
+#hourly-forecast-sct-icon {
+  width: 80%;
+  padding: 0.2em;
+}
+
+#weekly-forecast-sct-icon {
+  width: 60%;
 }
 
 .forecast-sct-temp {
-  font-size: 1.8em;
-  width: 2em;
+  font-size: 1.4em;
+  width: 2.8em;
   padding: 0.1em;
   text-align: center;
 }
 
 .forecast-sct-range {
   font-size: 1em;
+  text-align: center;
 }
 
 .forecast-sct-chances-rain {
   font-size: 0.8em;
+  text-align: center;
 }
 
 .forecast-sct-time {
   font-size: 1em;
+  text-align: center;
 }
 
 .forecast-sct-uv {
   font-size: 0.7em;
+  text-align: center;
 }
