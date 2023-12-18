@@ -91,7 +91,7 @@ const weekDay = (weatherData) => {
   card.classList.add("forecast-sct-box");
 
   const icon = document.createElement("img");
-  icon.classList.add("forecast-sct-icon");
+  icon.id = "weekly-forecast-sct-icon";
   icon.src = weatherData.icon;
 
   const temperature = document.createElement("div");
@@ -152,7 +152,7 @@ const hourlyForecast = (hour, weatherData) => {
   card.classList.add("hourly-forecast-sct-box");
 
   const icon = document.createElement("img");
-  icon.classList.add("forecast-sct-icon");
+  icon.id = "hourly-forecast-sct-icon";
   icon.src = weatherData.icon;
 
   const temperature = document.createElement("div");
