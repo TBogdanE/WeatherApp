@@ -27,7 +27,7 @@ const startApp = () => {
   initialLocalStorageCheck("localStorage");
 };
 
-//handles the location input form
+//handles the location search box
 const inputLocation = () => {
   const location = document.getElementById("input-location");
 

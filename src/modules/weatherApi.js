@@ -22,7 +22,6 @@ const getWeatherData = async (address, update) => {
     const dataForecast = await responseForecast.json();
     weatherData = new WeatherDataHandler(dataForecast);
     updateData(weatherData);
-    console.log(dataForecast);
 
     if (update) {
       updateLocalStorage(address);

@@ -5,7 +5,6 @@ import { weatherStatus } from "./weather_conditions";
 //variables
 let weatherLocationList = [];
 const CELSIUS = "Celsius";
-const FAHRENHEIT = "Fahrenheit";
 
 //this class will take all the data from the server
 //and based on that data, will create new classes that

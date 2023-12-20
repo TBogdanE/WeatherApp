@@ -1,6 +1,6 @@
 import { weatherLocationList } from "./handleData";
 import { locationNav, locationSearch } from "./webpage";
-import { initialPage } from "./handleUi";
+import { initialPage, initializeBtnState, setBtnActive } from "./handleUi";
 import { getWeatherData } from "./weatherApi";
 
 //adds data to the local storage
@@ -21,6 +21,7 @@ const updateLocalStorage = (data) => {
 const removeLocalStorage = () => {
   console.error("Data from local storage was succsesfull removed");
   localStorage.clear();
+  weatherLocationList = [];
 };
 
 //check if there is data in the local storage
@@ -32,7 +33,9 @@ const checkLocalStorage = () => {
     locationNav();
     locationSearch(data[0]);
     //displays the data of the first location in the list once the page has been reloaded
-    getWeatherData(data[0]);
+    getWeatherData(locationSearch());
+    //set's the btn of the first location as active
+    initializeBtnState();
   } else {
     //if there is no data in the local storage, the initial page will show up
     initialPage();

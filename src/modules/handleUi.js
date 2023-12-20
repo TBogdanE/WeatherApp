@@ -1,6 +1,7 @@
 import { locationSearch } from "./webpage";
 import { getWeatherData } from "./weatherApi";
 
+//creates the page for first time users
 const initialPage = () => {
   const body = document.querySelector("body");
   const initialPage = document.createElement("div");
@@ -81,7 +82,7 @@ const updateTodayCard = (weatherData) => {
   uvLevel.textContent = weather.uvLevele;
 };
 
-//creates and handles the data on specific day of the actual week
+//creates and handles the data on specific day of the actual week card
 const weekDay = (weatherData) => {
   const data = weatherData;
 
@@ -113,7 +114,7 @@ const weekDay = (weatherData) => {
   card.appendChild(rain);
 };
 
-//updates the week forecast sct with the data of everyday
+//updates the week forecast sct with the data for everyday
 const updateWeekSct = (weatherData) => {
   clearDisplay("#week-forecast-sct");
   weekDay(weatherData.getWeekDay(0));
@@ -187,6 +188,7 @@ const clearDisplay = (element) => {
   }
 };
 
+//makes the first btn of the location nav bar, active
 const initializeBtnState = () => {
   const nav = document.getElementById("locationNav");
   if (nav.firstElementChild) {
@@ -194,6 +196,7 @@ const initializeBtnState = () => {
   }
 };
 
+//sets the btns of the location nav bar active
 const setBtnActive = (btn) => {
   const nav = document.getElementById("locationNav");
   nav.querySelectorAll(".navLocationBtn").forEach((otherBtn) => {

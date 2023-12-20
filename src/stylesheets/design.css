@@ -105,6 +105,12 @@ body {
   border-radius: 5px;
   width: 50%;
   height: 50%;
+  transition: 0.2s;
+}
+
+#menu-btn:hover {
+  color: var(--text1);
+  background-color: var(--btn-hover);
 }
 
 #menu-box {
@@ -153,6 +159,17 @@ body {
   border-radius: 5px;
   padding: 0.1em;
   margin: 0.2em;
+  transition: 0.2s;
+}
+
+.navLocationBtn:hover {
+  color: var(--text1);
+  background-color: var(--btn-hover);
+}
+
+.active {
+  color: var(--text1);
+  background-color: var(--btn-hover);
 }
 
 /*today principal box*******************************************************************/
