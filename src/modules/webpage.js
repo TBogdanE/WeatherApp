@@ -5,6 +5,7 @@ import {
   removeLocalStorage,
   updateLocalStorage,
 } from "./localStorage";
+import { setBtnActive } from "./handleUi";
 
 //variables
 const CELSIUS = "Celsius";
@@ -79,8 +80,8 @@ const leftMenu = () => {
     deleteLocalStorageBtn.id = "menu-delete-lcs-btn";
     deleteLocalStorageBtn.textContent = "Delete data";
     deleteLocalStorageBtn.classList.add("menu-box-btns");
-    deleteLocalStorageBtn.addEventListener("click", hideLeftMenu);
     deleteLocalStorageBtn.addEventListener("click", () => {
+      hideLeftMenu();
       removeLocalStorage();
       location.reload();
     });
@@ -121,10 +122,12 @@ const locationNav = () => {
 const createNavBtns = (location) => {
   const btn = document.createElement("button");
   btn.classList.add("navLocationBtn");
+  setBtnActive(btn);
   //makes the first letter uppercase
   btn.textContent = location.charAt(0).toUpperCase() + location.slice(1);
   btn.addEventListener("click", () => {
     getWeatherData(location, false);
+    setBtnActive(btn);
   });
   return btn;
 };

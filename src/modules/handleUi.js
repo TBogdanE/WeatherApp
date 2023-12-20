@@ -187,6 +187,22 @@ const clearDisplay = (element) => {
   }
 };
 
+const initializeBtnState = () => {
+  const nav = document.getElementById("locationNav");
+  if (nav.firstElementChild) {
+    setBtnActive(nav.firstElementChild);
+  }
+};
+
+const setBtnActive = (btn) => {
+  const nav = document.getElementById("locationNav");
+  nav.querySelectorAll(".navLocationBtn").forEach((otherBtn) => {
+    otherBtn.classList.remove("active");
+  });
+
+  btn.classList.add("active");
+};
+
 //slider for hourly forecast
 const slider = document.querySelector(".slider");
 let currentIndex = 0;
@@ -211,4 +227,11 @@ document
   .getElementById("next-btn")
   .addEventListener("click", () => scrollHourly(1));
 
-export { initialPage, updateHourlySct, updateTodayCard, updateWeekSct };
+export {
+  initialPage,
+  updateHourlySct,
+  updateTodayCard,
+  updateWeekSct,
+  initializeBtnState,
+  setBtnActive,
+};
