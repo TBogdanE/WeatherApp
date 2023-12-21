@@ -27,12 +27,25 @@ const initialPage = () => {
   footer.id = "initial-page-footer";
   footer.textContent = "Project made following TOP curriculum by TBogdanE";
 
-  const handleSearchInput = (event) => {
+  const handleSearchInput = async (event) => {
     if (event.key == "Enter") {
       event.preventDefault();
-      getWeatherData(locationSearch(formInput.value), true);
+      try {
+        const weatherData = await getWeatherData(
+          locationSearch(formInput.value),
+          true
+        );
+
+        if (!weatherData) {
+          return;
+        }
+
+        body.removeChild(initialPage);
+        formInput.removeEventListener("keydown", handleSearchInput);
+      } catch (error) {
+        console.log("Location doesn't exist:", error);
+      }
       formInput.value = "";
-      body.removeChild(initialPage);
     }
   };
 
@@ -207,7 +220,11 @@ const setBtnActive = (btn) => {
 };
 
 const invalidLocationUi = () => {
-  const input = document.getElementById("input-location");
+  let input = document.getElementById("input-location");
+
+  if (document.getElementById("initial-page")) {
+    input = document.getElementById("initial-page-input");
+  }
   input.classList.add("input-location-error");
 
   setTimeout(() => {

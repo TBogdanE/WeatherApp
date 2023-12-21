@@ -5,7 +5,7 @@ import {
 } from "./handleData";
 import { locationNav } from "./webpage";
 import { updateLocalStorage } from "./localStorage";
-import { invalidLocationUi } from "./handleUi";
+import { initialPage, invalidLocationUi } from "./handleUi";
 
 const API_KEY = "6c1dab62db374a8ca86125637231412";
 let weatherData = null;
@@ -28,6 +28,8 @@ const getWeatherData = async (address, update) => {
       updateLocalStorage(address);
       locationNav();
     }
+
+    return dataForecast;
   } catch (error) {
     invalidLocationUi();
     console.error("Invalid Location:", error);
