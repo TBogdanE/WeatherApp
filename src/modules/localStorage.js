@@ -1,6 +1,6 @@
 import { weatherLocationList } from "./handleData";
 import { locationNav, locationSearch } from "./webpage";
-import { initialPage, initializeBtnState, setBtnActive } from "./handleUi";
+import { initialPage, initializeBtnState } from "./handleUi";
 import { getWeatherData } from "./weatherApi";
 
 //adds data to the local storage

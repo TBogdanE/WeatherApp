@@ -1,10 +1,6 @@
-import { weatherData, getWeatherData } from "./weatherApi";
-import { updateData, weatherLocationList } from "./handleData";
-import {
-  initialLocalStorageCheck,
-  removeLocalStorage,
-  updateLocalStorage,
-} from "./localStorage";
+import { getWeatherData } from "./weatherApi";
+import { weatherLocationList } from "./handleData";
+import { initialLocalStorageCheck, removeLocalStorage } from "./localStorage";
 import { setBtnActive } from "./handleUi";
 
 //variables
@@ -53,7 +49,7 @@ const leftMenu = () => {
       }
     };
 
-    //handles the cancelation of the left menu
+    //hides the left menu
     const hideLeftMenu = () => {
       if (body.contains(menu)) {
         body.removeChild(menu);

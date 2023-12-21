@@ -5,7 +5,7 @@ import {
 } from "./handleData";
 import { locationNav } from "./webpage";
 import { updateLocalStorage } from "./localStorage";
-import { initialPage, invalidLocationUi } from "./handleUi";
+import { invalidLocationUi } from "./handleUi";
 
 const API_KEY = "6c1dab62db374a8ca86125637231412";
 let weatherData = null;
