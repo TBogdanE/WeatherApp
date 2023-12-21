@@ -206,6 +206,15 @@ const setBtnActive = (btn) => {
   btn.classList.add("active");
 };
 
+const invalidLocationUi = () => {
+  const input = document.getElementById("input-location");
+  input.classList.add("input-location-error");
+
+  setTimeout(() => {
+    input.classList.remove("input-location-error");
+  }, 2000);
+};
+
 //slider for hourly forecast
 const slider = document.querySelector(".slider");
 let currentIndex = 0;
@@ -237,4 +246,5 @@ export {
   updateWeekSct,
   initializeBtnState,
   setBtnActive,
+  invalidLocationUi,
 };

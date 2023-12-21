@@ -11,6 +11,8 @@
   --btn: rgb(109, 118, 126);
   --btn-active: rgb(54, 59, 64);
   --btn-hover: rgb(53, 59, 65);
+  --error1: rgb(218, 65, 65);
+  --error2: rgb(136, 48, 48);
 }
 
 body {
@@ -302,6 +304,12 @@ body {
 #input-location:focus {
   background-color: var(--btn);
   color: var(--text1);
+}
+
+.input-location-error {
+  background-color: var(--error1) !important;
+  border: 0.15em solid var(--error2) !important;
+  transition: 0.2s ease-in-out;
 }
 
 /*today forecast sct*******************************************************************/
