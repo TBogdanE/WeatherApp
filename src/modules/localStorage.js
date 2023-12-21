@@ -21,7 +21,6 @@ const updateLocalStorage = (data) => {
 const removeLocalStorage = () => {
   console.error("Data from local storage was succsesfull removed");
   localStorage.clear();
-  weatherLocationList = [];
 };
 
 //check if there is data in the local storage
